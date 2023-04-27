@@ -43,11 +43,8 @@
 }
 
 -(void)receive {
-    NSLog(@"%@", @"receive");
     [self.webSocketTask receiveMessageWithCompletionHandler:^(NSURLSessionWebSocketMessage *message, NSError *error) {
-        NSLog(@"%@", @"受け取りました");
         if (message.string) {
-            NSLog(@"%@", message.string);
             didReceived(message.string);
         }
         else if (message.data) {
@@ -70,7 +67,6 @@
 }
 
 -(void)URLSession:(NSURLSession *)session webSocketTask:(NSURLSessionWebSocketTask *)webSocketTask didOpenWithProtocol:(NSString *)protocol {
-    //connected
     NSLog(@"connected");
     [self receive];
 }
